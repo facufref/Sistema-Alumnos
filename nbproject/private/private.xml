@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/SistemaAlumnos/src/sistemaalumnos/Main.java</file>
+            <file>file:/D:/SistemaAlumnos/src/sistemaalumnos/vistas/VentanaPrincipal.java</file>
+            <file>file:/D:/SistemaAlumnos/src/sistemaalumnos/datos/AlumnoDao.java</file>
+            <file>file:/D:/SistemaAlumnos/src/sistemaalumnos/vistas/VentanaAlumnos.java</file>
+            <file>file:/D:/SistemaAlumnos/src/sistemaalumnos/servicio/AlumnoManager.java</file>
+            <file>file:/D:/SistemaAlumnos/src/sistemaalumnos/dominio/Alumno.java</file>
+        </group>
+    </open-files>
+</project-private>

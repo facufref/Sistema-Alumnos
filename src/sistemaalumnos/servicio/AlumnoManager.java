@@ -23,8 +23,8 @@ public class AlumnoManager {
         alumnoDao.AgregarAlumno(alumno);
     }
     
-    public static void EliminarAlumno(int indice){
-        alumnoDao.EliminarAlumno(indice);
+    public static void EliminarAlumno(int legajo){
+        alumnoDao.EliminarAlumno(legajo);
     }
     
     public static void EditarAlumno(Alumno alumno){
@@ -33,10 +33,6 @@ public class AlumnoManager {
     
     public static Alumno ObtenerAlumnoPorLegajo(int legajo){
         return alumnoDao.ObtenerAlumnoPorLegajo(legajo);
-    }
-    
-    public static Alumno ObtenerAlumnoPorIndice(int indice){
-        return alumnoDao.ObtenerAlumnoPorIndice(indice);
     }
     
     public static ArrayList<Alumno> ObtenerAlumnos(){

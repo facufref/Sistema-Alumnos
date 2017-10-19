@@ -48,6 +48,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         buttonMaterias.setText("Materias");
 
         buttonNotas.setText("Notas");
+        buttonNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNotasActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
@@ -102,6 +107,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonAlumnosActionPerformed
+
+    private void buttonNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNotasActionPerformed
+        // TODO add your handling code here:
+        VentanaNotas ventana = new VentanaNotas();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buttonNotasActionPerformed
 
     /**
      * @param args the command line arguments

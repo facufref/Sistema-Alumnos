@@ -28,11 +28,15 @@ public class AlumnoDao {
         System.out.println("Alumno Legajo "+alumno.getLegajo()+" agregado.");
     }
     
-    public void EliminarAlumno(int indice) {
+    public void EliminarAlumno(int legajo) {
         try {
-            Alumno a = repositorioAlumnos.get(indice);
-            repositorioAlumnos.remove(indice);
-            System.out.println("Alumno Legajo "+a.getLegajo()+" eliminado.");
+            for (int i = 0; i < repositorioAlumnos.size(); i++) {
+            if(repositorioAlumnos.get(i).getLegajo() == legajo){
+                repositorioAlumnos.remove(i);
+                System.out.println("Alumno Legajo "+legajo+" eliminado.");
+                return;
+                }           
+            }   
         } catch (Exception e) {
             System.out.println("Error al eliminar alumno. Excepcion: " + e.getMessage());
         }
@@ -57,14 +61,6 @@ public class AlumnoDao {
             }
         }
         System.out.println("Alumno Legajo "+legajo+" no encontrado.");
-        return null;
-    }
-    
-    public Alumno ObtenerAlumnoPorIndice(int indice){
-        if(repositorioAlumnos.size() >= indice){
-            return repositorioAlumnos.get(indice);
-        }
-        System.out.println("Alumno de indice "+indice+" no encontrado.");
         return null;
     }
     

@@ -8,6 +8,7 @@ package sistemaalumnos.vistas;
 import sistemaalumnos.dominio.Alumno;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import sistemaalumnos.dominio.Nota;
 import sistemaalumnos.servicio.AlumnoManager;
 import sistemaalumnos.servicio.NotaManager;
 
@@ -15,11 +16,18 @@ import sistemaalumnos.servicio.NotaManager;
  *
  * @author Facu
  */
-public class VentanaAlumnos extends javax.swing.JFrame {
+public class VentanaNotas extends javax.swing.JFrame {
     
-    public VentanaAlumnos() {
+    ArrayList<Alumno> alumnos = AlumnoManager.ObtenerAlumnos();
+    
+    public VentanaNotas() {
         initComponents();
-        ActualizarModeloTablaAlumnos();
+        ActualizarModeloTablaNotas();
+        
+        comboBoxAlumno.removeAllItems();
+        for (Alumno alumno : alumnos) {
+            comboBoxAlumno.addItem(alumno.getNombre());
+        }
     }
 
     /**
@@ -32,17 +40,14 @@ public class VentanaAlumnos extends javax.swing.JFrame {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
-        labelNombre = new javax.swing.JLabel();
-        textFieldNombre = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelValor = new javax.swing.JLabel();
+        textFieldValor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        textFieldDni = new javax.swing.JTextField();
-        textFieldLegajo = new javax.swing.JTextField();
-        textFieldDireccion = new javax.swing.JTextField();
-        textFieldTelefono = new javax.swing.JTextField();
         buttonLimpiar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaObservacion = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        comboBoxAlumno = new javax.swing.JComboBox<>();
         panelBotones = new javax.swing.JPanel();
         buttonAgregar = new javax.swing.JButton();
         buttonEliminar = new javax.swing.JButton();
@@ -50,34 +55,24 @@ public class VentanaAlumnos extends javax.swing.JFrame {
         buttonSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaAlumnos = new javax.swing.JTable();
-        buttonVerPromedio = new javax.swing.JButton();
+        tablaNotas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelNombre.setBackground(new java.awt.Color(102, 102, 255));
-        labelNombre.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
-        labelNombre.setText("Nombre:");
-        labelNombre.setToolTipText("");
+        labelValor.setBackground(new java.awt.Color(102, 102, 255));
+        labelValor.setFont(new java.awt.Font("Yu Gothic Light", 1, 18)); // NOI18N
+        labelValor.setText("Valor:");
+        labelValor.setToolTipText("");
 
-        textFieldNombre.setText(" ");
-        textFieldNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+        textFieldValor.setText(" ");
+        textFieldValor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                textFieldNombreMouseEntered(evt);
+                textFieldValorMouseEntered(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Legajo:");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Telefono: ");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Direccion:");
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Dni:");
+        jLabel4.setText("Observacion:");
 
         buttonLimpiar.setText("Limpiar");
         buttonLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,64 +81,59 @@ public class VentanaAlumnos extends javax.swing.JFrame {
             }
         });
 
+        textAreaObservacion.setColumns(20);
+        textAreaObservacion.setRows(5);
+        jScrollPane2.setViewportView(textAreaObservacion);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Alumno:");
+
+        comboBoxAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(labelValor))
+                .addGap(20, 20, 20)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(labelNombre))))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel4)))
-                .addGap(18, 18, 18)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(textFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addComponent(textFieldDni)
-                        .addComponent(textFieldLegajo)
-                        .addComponent(textFieldTelefono))
-                    .addComponent(textFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addComponent(textFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(comboBoxAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                .addGap(99, 99, 99))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(33, 33, 33)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNombre)
-                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1)
+                    .addComponent(comboBoxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelValor)
+                    .addComponent(textFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(textFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(15, 15, 15)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(textFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(textFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel4))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(buttonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(28, 28, 28))
         );
 
         buttonAgregar.setText("Agregar");
@@ -208,7 +198,7 @@ public class VentanaAlumnos extends javax.swing.JFrame {
 
         buttonAgregar.getAccessibleContext().setAccessibleDescription("Este boton es el de ok");
 
-        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -219,19 +209,12 @@ public class VentanaAlumnos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tablaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaNotas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaAlumnosMouseClicked(evt);
+                tablaNotasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaAlumnos);
-
-        buttonVerPromedio.setText("Ver Promedio");
-        buttonVerPromedio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonVerPromedioActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tablaNotas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,34 +223,30 @@ public class VentanaAlumnos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonVerPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(229, 229, 229))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonVerPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +257,7 @@ public class VentanaAlumnos extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -287,17 +266,15 @@ public class VentanaAlumnos extends javax.swing.JFrame {
     private void buttonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarActionPerformed
         // TODO add your handling code here:
         
-        try {        
-        Alumno alumno1 = new Alumno();
-        alumno1.setNombre(textFieldNombre.getText());
-        alumno1.setDni(Integer.parseInt(textFieldDni.getText()));
-        alumno1.setLegajo(Integer.parseInt(textFieldLegajo.getText()));
-        alumno1.setDireccion(textFieldDireccion.getText());
-        alumno1.setTelefono(Integer.parseInt(textFieldTelefono.getText()));
-        
-        AlumnoManager.AgregarAlumno(alumno1);
-        ActualizarModeloTablaAlumnos();
-            
+        try {
+            int indiceComboBoxAlumno = comboBoxAlumno.getSelectedIndex();
+            int legajo = alumnos.get(indiceComboBoxAlumno).getLegajo();
+            double nota = Double.parseDouble(textFieldValor.getText());
+            String observacion = textAreaObservacion.getText();
+
+            NotaManager.AgregarNota(nota, observacion, legajo);
+            ActualizarModeloTablaNotas();
+            LimpiarCampos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la carga de datos, por favor ingrese correctamente los campos", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -307,34 +284,33 @@ public class VentanaAlumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonAgregarKeyPressed
 
-    private void textFieldNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldNombreMouseEntered
+    private void textFieldValorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldValorMouseEntered
         // TODO add your handling code here:
 //        String texto = textFieldNombre.getText();
 //        textFieldNombre.setText(texto+"aaa");
-    }//GEN-LAST:event_textFieldNombreMouseEntered
+    }//GEN-LAST:event_textFieldValorMouseEntered
 
     private void buttonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarActionPerformed
         // TODO add your handling code here:
-        int fila = tablaAlumnos.getSelectedRow();
-        int legajo = (int)tablaAlumnos.getValueAt(fila, 0);
-            AlumnoManager.EliminarAlumno(legajo);
-            LimpiarCampos();
+        int fila = tablaNotas.getSelectedRow();
+        int id = (int)tablaNotas.getValueAt(fila, 0);
         
-        ActualizarModeloTablaAlumnos();
+        NotaManager.EliminarNota(id);
+        LimpiarCampos();
+        
+        ActualizarModeloTablaNotas();
     }//GEN-LAST:event_buttonEliminarActionPerformed
 
-    private void tablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAlumnosMouseClicked
+    private void tablaNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaNotasMouseClicked
         // TODO add your handling code here:
-        int fila = tablaAlumnos.getSelectedRow();
-        int legajo = (int)tablaAlumnos.getValueAt(fila, 0);
+        int fila = tablaNotas.getSelectedRow();
+        int id = (int)tablaNotas.getValueAt(fila, 0);
             
-        Alumno alumno = AlumnoManager.ObtenerAlumnoPorLegajo(legajo);
-        textFieldNombre.setText(alumno.getNombre());
-        textFieldDni.setText("" + alumno.getDni());
-        textFieldDireccion.setText(alumno.getDireccion());
-        textFieldLegajo.setText("" + alumno.getLegajo());
-        textFieldTelefono.setText("" + alumno.getTelefono());
-    }//GEN-LAST:event_tablaAlumnosMouseClicked
+        Nota nota = NotaManager.ObtenerNotaPorId(id);
+        textFieldValor.setText(""+nota.getValor());
+        textAreaObservacion.setText(nota.getObservacion());
+        comboBoxAlumno.setSelectedItem(nota.getAlumno().getNombre());
+    }//GEN-LAST:event_tablaNotasMouseClicked
 
     private void buttonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLimpiarActionPerformed
         // TODO add your handling code here:
@@ -344,17 +320,18 @@ public class VentanaAlumnos extends javax.swing.JFrame {
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
         // TODO add your handling code here:
         
-        try {        
-        Alumno alumno1 = new Alumno();
-        alumno1.setNombre(textFieldNombre.getText());
-        alumno1.setDni(Integer.parseInt(textFieldDni.getText()));
-        alumno1.setLegajo(Integer.parseInt(textFieldLegajo.getText()));
-        alumno1.setDireccion(textFieldDireccion.getText());
-        alumno1.setTelefono(Integer.parseInt(textFieldTelefono.getText()));
-        
-        AlumnoManager.EditarAlumno(alumno1);
-        ActualizarModeloTablaAlumnos();
+        try {
+            int indiceComboBoxAlumno = comboBoxAlumno.getSelectedIndex();
+            int legajo = alumnos.get(indiceComboBoxAlumno).getLegajo();
+            double nota = Double.parseDouble(textFieldValor.getText());
+            String observacion = textAreaObservacion.getText();
             
+            int fila = tablaNotas.getSelectedRow();
+            int id = (int)tablaNotas.getValueAt(fila, 0);
+        
+            NotaManager.EditarNota(id, nota, observacion, legajo);
+            ActualizarModeloTablaNotas();
+            LimpiarCampos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la carga de datos, por favor ingrese correctamente los campos", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -366,19 +343,6 @@ public class VentanaAlumnos extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_buttonSalirActionPerformed
-
-    private void buttonVerPromedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVerPromedioActionPerformed
-        // TODO add your handling code here:
-        int fila = tablaAlumnos.getSelectedRow();
-        
-        if(fila >= 0) {
-            int legajo = (int)tablaAlumnos.getValueAt(fila, 0);
-            String nombre = AlumnoManager.ObtenerAlumnoPorLegajo(legajo).getNombre();
-            double promedio = NotaManager.ObtenerPromedio(legajo);
-            
-            JOptionPane.showMessageDialog(this, "El promedio del alumno "+nombre+" es de "+ promedio, "Promedio", JOptionPane.INFORMATION_MESSAGE);
-            }
-    }//GEN-LAST:event_buttonVerPromedioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,46 +361,47 @@ public class VentanaAlumnos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAlumnos().setVisible(true);
+                new VentanaNotas().setVisible(true);
             }
         });
     }
-       public void ActualizarModeloTablaAlumnos() {
-        ArrayList<Alumno> alumnos = AlumnoManager.ObtenerAlumnos();
+       public void ActualizarModeloTablaNotas() {
+        ArrayList<Nota> notas = NotaManager.ObtenerNotas();
         
-        Object[][] filas = new Object[alumnos.size()][5];
-        for (int i = 0; i < alumnos.size(); i++) {
-            filas[i][0] = alumnos.get(i).getLegajo();
-            filas[i][1] = alumnos.get(i).getNombre();
-            filas[i][2] = alumnos.get(i).getDni();
-            filas[i][3] = alumnos.get(i).getTelefono();
-            filas[i][4] = alumnos.get(i).getDireccion();
+        Object[][] filas = new Object[notas.size()][6];
+        for (int i = 0; i < notas.size(); i++) {
+            filas[i][0] = notas.get(i).getId();
+            filas[i][1] = notas.get(i).getAlumno().getLegajo();
+            filas[i][2] = notas.get(i).getAlumno().getNombre();
+            filas[i][3] = notas.get(i).getMateria().getNombre();
+            filas[i][4] = notas.get(i).getValor();
+            filas[i][5] = notas.get(i).getObservacion();
         }
-        tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
-                filas, new String[]{"Legajo", "Nombre", "Dni", 
-                    "Telefono", "Direccion"}));
+        tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
+                filas, new String[]{"Id", "Legajo", "Alumno", "Materia", 
+                    "Nota", "Observacion"}));
     }
        
        private void LimpiarCampos(){
-        textFieldNombre.setText("");
-        textFieldDni.setText("");
-        textFieldDireccion.setText("");
-        textFieldLegajo.setText("");
-        textFieldTelefono.setText("");
+        comboBoxAlumno.setSelectedIndex(0);
+        textFieldValor.setText("");
+        textAreaObservacion.setText("");
        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -445,21 +410,17 @@ public class VentanaAlumnos extends javax.swing.JFrame {
     private javax.swing.JButton buttonEliminar;
     private javax.swing.JButton buttonLimpiar;
     private javax.swing.JButton buttonSalir;
-    private javax.swing.JButton buttonVerPromedio;
+    private javax.swing.JComboBox<String> comboBoxAlumno;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelNombre;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelValor;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tablaAlumnos;
-    private javax.swing.JTextField textFieldDireccion;
-    private javax.swing.JTextField textFieldDni;
-    private javax.swing.JTextField textFieldLegajo;
-    private javax.swing.JTextField textFieldNombre;
-    private javax.swing.JTextField textFieldTelefono;
+    private javax.swing.JTable tablaNotas;
+    private javax.swing.JTextArea textAreaObservacion;
+    private javax.swing.JTextField textFieldValor;
     // End of variables declaration//GEN-END:variables
 }

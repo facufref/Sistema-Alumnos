@@ -122,14 +122,9 @@ public class Alumno {
         this.materiasCursadas.add(materia);
     }
     
-//    public void registrarNotas(String observacion, int valor, Materia materia){
-//    Nota nota = new Nota();
-//    nota.setObservacion(observacion);
-//    nota.setValor(valor);
-//    nota.setAlumno(this);
-//    nota.setMateria(materia);
-//    notas.add(nota);
-//    }
+    public void agregarNota(Nota nota){
+        this.notas.add(nota);
+    }
 
     @Override
     public String toString() {
